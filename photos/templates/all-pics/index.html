@@ -3,20 +3,30 @@
 {% block content %}
 {{block.super}}
 
-<div class="container">
-    {% for photos in gallery %}
-    
-    <h4>
+<div class="container row">
+        {% for photos in gallery %}
+    {% comment %} <div class="row" style="border:solid;">
+        <div style="border:solid blue;"></div>
+        <div class="card" style="width: 30%;border:solid red;margin:0;">
+            <a href="{% url 'image' photos.id %}">
+                <img class="card-img-top" src="{{photos.image.url}}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+    {% comment %} ****************************** {% endcomment %}
+    {% comment %} <h4>
         {{ photos.title }}
     </h4>
     <div>
-        <a href="{% url 'image' photos.id %}">
             <img src="{{photos.image.url}}" class="img-responsive" alt="Image" width="20%">
-        </a>
     </div>
     <p>
         {{ photos.description | truncatechars:50 }}
-    </p>
+    </p> {% endcomment %}
     
     {% empty %}
     <p>
