@@ -18,7 +18,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     {% endblock %}
 </head>
-<body style="background-image: linear-gradient(to right top, #97c8f3, #a3c2e6, #aabcd9, #afb6cb, #b0b2be, #b2b6c2, #b4bac6, #b6beca, #b3cede, #acdfea, #aaf0ec, #b7ffe4);">
+{% comment %} linear-gradient(to right top, #97c8f3, #a3c2e6, #aabcd9, #afb6cb, #b0b2be, #b2b6c2, #b4bac6, #b6beca, #b3cede, #acdfea, #aaf0ec, #b7ffe4) {% endcomment %}
+<body style="height: auto; background-color: #afb6cb;">
     {% include "navbar.html" %}
 
     {% block content %}

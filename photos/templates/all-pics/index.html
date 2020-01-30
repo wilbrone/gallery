@@ -4,13 +4,13 @@
 {% block content %}
 {{ block.super }}
 
-<div class="container row" style="margin: 0 auto;display: flex;justify-content: space-around;">
+<div class="row" style="margin: 0 auto;display: flex;justify-content: space-around;">
     {% for photos in gallery %}
-    <div class="card" style="width: 25%; margin:0; height: auto;">
+    <div class="card" style="position: relative; width: 30%; margin-top:2em !important; margin-bottom: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
         <a href="{% url 'image' photos.id %}">
             <img class="card-img-top w3-hover-grayscale" src="{{photos.image.url}}" alt="Card image cap" width="100%">
         </a>
-        <div class="card-body">
+        <div class="card-body" style="">
             <p class="title"><h1>{{ photos.title }}</h1></p>
             <p class="card-text">
                 {{ photos.description | truncatechars:50 }}
@@ -19,15 +19,9 @@
         <hr width="80%" style="jstify:center;">
         <p style="width:100%;">
             <a href="{% url 'image' photos.id %}">
-                <button class="prof" style="width:83%;border: none;
-                outline: 0;
-                display: inline-block;
-                padding: 8px;
-                color: white;
-                background-color: #000;
-                text-align: center;
-                cursor: pointer;
-                font-size: 14px;">View More</button>
+                <button class="prof" style="width:83%;border: none; outline: 0; display: inline-block; padding: 8px; color: white; background-color: #000; text-align: center; cursor: pointer; font-size: 14px;">
+                    View More
+                </button>
             </a>
         </p>
     </div>
@@ -42,5 +36,16 @@
     <a href="{% url 'location' loc.id %}">{{ loc.loct }}</a>&nbsp;
     {% endfor %}
 </div> 
-
+<div style="border:solid; display:block;">
+    <div style="float: left; border:solid red; min-height:15em; min-width: 30%;"></div>
+    <div style="float: left; border:solid blue; min-height:20em; min-width: 20%;"></div>
+    <div style="float: left; border:solid yellow; min-height:25em; min-width: 20%;"></div>
+    <div style="float: left; border:solid green; min-height:25em; min-width: 20%;"></div>
+    {% comment %} <div style="float: left; border:solid brown; min-height:10em; min-width: 20%;"></div> {% endcomment %}
+    <div style="float: left; border:solid grey; min-height:15em; min-width: 20%;"></div>
+    {% comment %} <div style="float: left; border:solid silver; min-height:15em; min-width: 20%;">try</div> {% endcomment %}
+    {% comment %} <div style="float: left; border:solid yellow; min-height:15em; min-width: 20%;"></div> {% endcomment %}
+    {% comment %} <div style="float: left; border:solid blue; min-height:15em; min-width: 20%;"></div> {% endcomment %}
+    {% comment %} <div style="float: left; border:solid yellow; min-height:15em; min-width: 20%;"></div> {% endcomment %}
+</div>
 {% endblock %}
