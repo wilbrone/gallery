@@ -1,0 +1,23 @@
+{% extends 'all-pics/base.html' %}
+
+{% block content %}
+{{block.super}}
+{% for images in pics_by_location %}
+<div class="container">
+    <p>
+        Photos taken in {{ images.location.loct }}
+    </p>
+    <h4>
+        {{ images.title }}
+    </h4>
+    <div>
+        <a href="{% url 'image' images.id %}">
+            <img src="{{images.image.url}}" class="img-responsive" alt="Image" width="20%">
+        </a>
+    </div>
+    <p>
+        {{ images.description | truncatechars:50 }}...
+    </p>
+</div>
+{% endfor %}
+{% endblock %}

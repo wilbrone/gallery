@@ -1,0 +1,33 @@
+{%extends 'all-pics/base.html'%}
+
+{% block content %}
+{{block.super}}
+
+<div class="container">
+    {% for photos in gallery %}
+    
+    <h4>
+        {{ photos.title }}
+    </h4>
+    <div>
+        <a href="{% url 'image' photos.id %}">
+            <img src="{{photos.image.url}}" class="img-responsive" alt="Image" width="20%">
+        </a>
+    </div>
+    <p>
+        {{ photos.description | truncatechars:50 }}
+    </p>
+    
+    {% empty %}
+    <p>
+        you got nothing to show
+    </p>
+    {% endfor %}
+    <div>
+        {% for loc in locations %}
+        <a href="{% url 'location' loc.id %}">{{ loc.loct }}</a>&nbsp;
+        {% endfor %}
+    </div> 
+</div>
+
+{% endblock %}
