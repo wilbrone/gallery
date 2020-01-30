@@ -1,43 +1,32 @@
-{%extends 'all-pics/base.html'%}
+{% extends 'all-pics/base.html' %}
+{% load static %}
 
 {% block content %}
-{{block.super}}
+{{ block.super }}
 
-<div class="container row">
-        {% for photos in gallery %}
-    {% comment %} <div class="row" style="border:solid;">
-        <div style="border:solid blue;"></div>
-        <div class="card" style="width: 30%;border:solid red;margin:0;">
-            <a href="{% url 'image' photos.id %}">
-                <img class="card-img-top" src="{{photos.image.url}}" alt="Card image cap">
-            </a>
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+<div class="container row" style="margin: 0 auto;display: flex;justify-content: space-around;">
+    {% for photos in gallery %}
+    <div class="card" style="width: 25%; margin:0;">
+        <a href="{% url 'image' photos.id %}">
+            <img class="card-img-top w3-hover-grayscale" src="{{photos.image.url}}" alt="Card image cap" width="100%">
+        </a>
+        <div class="card-body">
+            <p class="title"><h1>{{ photos.title }}</h1></p>
+            <p class="card-text">
+                {{ photos.description | truncatechars:50 }}
+            </p>
         </div>
-    </div> {% endcomment %}
-
-    {% comment %} ****************************** {% endcomment %}
-    {% comment %} <h4>
-        {{ photos.title }}
-    </h4>
-    <div>
-            <img src="{{photos.image.url}}" class="img-responsive" alt="Image" width="20%">
     </div>
-    <p>
-        {{ photos.description | truncatechars:50 }}
-    </p> {% endcomment %}
-    
     {% empty %}
     <p>
         you got nothing to show
     </p>
     {% endfor %}
-    <div>
-        {% for loc in locations %}
-        <a href="{% url 'location' loc.id %}">{{ loc.loct }}</a>&nbsp;
-        {% endfor %}
-    </div> 
 </div>
+<div>
+    {% for loc in locations %}
+    <a href="{% url 'location' loc.id %}">{{ loc.loct }}</a>&nbsp;
+    {% endfor %}
+</div> 
 
 {% endblock %}
