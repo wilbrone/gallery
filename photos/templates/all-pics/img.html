@@ -5,12 +5,18 @@
 
   <div class="container">
 
-    <div class="row">
-      <div class="card row">
-        <h1 class="">{{gallery.title}}</h1>
-        <img src="{{gallery.image.url}}"  class="img-responsive" alt="" width="25%">
-        <p>{{gallery.description}}</p>
-        <p><strong>Posted</strong> <em>{{gallery.post_date|timesince}} ago</em> by Wilbrone</p>
+    <div class="">
+      <div class="card row" style="">
+        <h1 class="" style="margin-top:2em;">{{gallery.title}}</h1>
+        <div class="row" style="justify-content: space-around;margin-top:2em;">
+          <img src="{{gallery.image.url}}"  class="img-responsive" alt="" width="25%" style="margin-left:3em;">
+          <div style="width: 60%;">
+            <div class="card" style="margin: auto; min-height:45%;">
+              <p style="text-align:center;">{{gallery.description}}</p>
+              <p style="margin-left: 1em;"><strong>Posted</strong> <em>{{gallery.post_date|timesince}} ago</em> by Wilbrone</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
