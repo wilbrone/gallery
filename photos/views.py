@@ -24,7 +24,8 @@ def single_image(request, image_id):
     except DoesNotExist:
         raise Http404()
 
-    return render(request, 'all-pics/img.html', {"gallery":gallery})
+    locations = Location.get_location()
+    return render(request, 'all-pics/img.html', {"gallery":gallery, 'locations':locations})
 
 def search_results(request):
     if 'category' in request.GET and request.GET['category']:
@@ -37,12 +38,14 @@ def search_results(request):
         return render(request, 'all-pics/search.html', {'message': message, 'photo':searched_image})
 
     else:
-        message = 'You havent searched for any item'
+        message = 'You haven\'t searched for any item'
         return render(request, 'all-pics/search.html', {'message':message})
 
 
 def location_pics(request,loct_id):
-    
+    # locations = Location.get_location_by_id(loct_id)
+    locations = Location.get_location()
+    location = Location.objects.filter(id = loct_id)
     pics_by_location = Image.photos_by_loct(loct_id)
 
-    return render(request, 'all-pics/location.html', {'pics_by_location':pics_by_location})
+    return render(request, 'all-pics/location.html', {'pics_by_location':pics_by_location, 'location':location, 'locations':locations})

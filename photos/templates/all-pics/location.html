@@ -2,22 +2,39 @@
 
 {% block content %}
 {{block.super}}
-{% for images in pics_by_location %}
-<div class="container">
-    <p>
-        Photos taken in {{ images.location.loct }}
-    </p>
-    <h4>
-        {{ images.title }}
-    </h4>
-    <div>
-        <a href="{% url 'image' images.id %}">
-            <img src="{{images.image.url}}" class="img-responsive" alt="Image" width="20%">
+<p style="">
+    {% for locations in location %}
+    <h2 style="margin-left:10%; font-family: 'Bebas Neue', cursive; letter-spacing: 3px;">
+        Photos taken in <strong>{{ locations.loct }}</strong>
+    </h2>
+    {% endfor %}
+</p>
+{% comment %} **************************** {% endcomment %}
+<div class="row" style="margin: 0 auto;display: flex;justify-content: space-around;">
+    {% for photos in pics_by_location %}
+    <div class="card" style="position: relative; width: 30%; margin-top:2em !important; margin-bottom: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+        <a href="{% url 'image' photos.id %}">
+            <img class="card-img-top w3-hover-grayscale" src="{{photos.image.url}}" alt="Card image cap" width="100%">
         </a>
+        <div class="card-body" style="">
+            <p class="title"><h1>{{ photos.title }}</h1></p>
+            <p class="card-text">
+                {{ photos.description | truncatechars:50 }}
+            </p>
+        </div>
+        <hr width="80%" style="jstify:center;">
+        <p style="width:100%;">
+            <a href="{% url 'image' photos.id %}">
+                <button class="prof" style="width:83%;border: none; outline: 0; display: inline-block; padding: 8px; color: white; background-color: #000; text-align: center; cursor: pointer; font-size: 14px;">
+                    View More
+                </button>
+            </a>
+        </p>
     </div>
+    {% empty %}
     <p>
-        {{ images.description | truncatechars:50 }}...
+        you got nothing to show
     </p>
+    {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}
