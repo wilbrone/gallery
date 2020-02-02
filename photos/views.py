@@ -55,10 +55,10 @@ def location_pics(request,loct_id):
     return render(request, 'all-pics/location.html', {'pics_by_location':pics_by_location, 'location':location, 'locations':locations})
 
 
-def my_image(request, image_id):
-    gallery = Image.objects.get(id = image_id)
-    image = gallery.image.url
+def my_image(request, id):
+    gallery = Image.objects.get(id = id)
+    image = gallery.image.path
     print(image)
-    image_data = open("/path/to/my/"+image, "rb").read()
-    
-    return HttpResponse(image_data, mimetype="image/png")
+    image_data = open(image, "rb").read()
+
+    return HttpResponse(image_data, content_type="image/png")
