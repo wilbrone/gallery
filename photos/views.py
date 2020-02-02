@@ -28,22 +28,26 @@ def single_image(request, image_id):
     return render(request, 'all-pics/img.html', {"gallery":gallery, 'locations':locations})
 
 def search_results(request):
-    if 'category' in request.GET and request.GET['category']:
-        search_term = request.GET.get('category')
-        searched_categ = Category.search_category(search_term)
-        message = f'{search_term}'
+    try:
+        locations = Location.get_location()
 
-        searched_image = Image.get_pics_cat(searched_categ)
+        if 'category' in request.GET and request.GET['category']:
+            search_term = request.GET.get('category')
+            searched_categ = Category.search_category(search_term)
+            message = f'{search_term}'
 
-        return render(request, 'all-pics/search.html', {'message': message, 'photo':searched_image})
+            searched_image = Image.get_pics_cat(searched_categ)
 
-    else:
-        message = 'You haven\'t searched for any item'
-        return render(request, 'all-pics/search.html', {'message':message})
+            return render(request, 'all-pics/search.html', {'message': message, 'photo':searched_image, 'locations':locations})
 
+        else:
+            message = 'You haven\'t searched for any item'
+            return render(request, 'all-pics/search.html', {'message':message})
+    except:
+        
+        return render(request, 'all-pics/search.html', {'locations':locations})
 
 def location_pics(request,loct_id):
-    # locations = Location.get_location_by_id(loct_id)
     locations = Location.get_location()
     location = Location.objects.filter(id = loct_id)
     pics_by_location = Image.photos_by_loct(loct_id)
