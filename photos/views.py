@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import Http404, HttpResponse, request
 import datetime as dt
+from copy import deepcopy
 
 from .models import Image,Category,Location
 
@@ -59,6 +60,7 @@ def my_image(request, id):
     gallery = Image.objects.get(id = id)
     image = gallery.image.path
     print(image)
+    # image_data = open(image, "rb").read()
     image_data = open(image, "rb").read()
 
     return HttpResponse(image_data, content_type="image/png")
